@@ -1,3 +1,7 @@
+//Essa biblioteca contem a construção da classe de referência bibliográfica propriamente dita.
+//Possui as instâncias Id do trabalho, Título do trabalho, Autor do trabalho, veículo de Publicação do trabalho,
+//ano de publicação do trabalho, e as Páginas Incial e Final do veículo onde se encontra o trabalho. 
+
 #ifndef BIB_REF
 #define BIB_REF
 
@@ -10,10 +14,12 @@ using namespace std;
 class bibRef {
 public:		
 	bibRef();
+	//Id, Title, Author, Publication, Year, PageStart, PageEnd
 	bibRef(char*, char*, char*, char*, int, int, int);
 	void writeToFile(fstream&) ;
 	void readFromFile(fstream&);
 	void readKey();
+	//tamanho do arquivo
 	int size() const {
 		return idLen + titleLen + authorLen + pubLen + sizeof(year) + sizeof(pageStart) + sizeof(pageEnd);
 	}

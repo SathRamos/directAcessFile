@@ -1,3 +1,6 @@
+//Esse código em c++ consiste no algoritmo de acesso aleatório de memória (DMA - direct memory access).
+//Seu funcionamento está comentado dentro do código.
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "bib_ref.h"
@@ -26,7 +29,7 @@ bibRef::bibRef(char* id, char* t, char* a, char* p, int y, int ps, int pe) : idL
     pageEnd = pe;
 }
 
-
+//Escreve no arquivo cada um dos atributos de uma entrada de referência bibliográfica
 void bibRef::writeToFile(fstream& out)  {
 	
 	out.write(ID, idLen);
@@ -38,6 +41,7 @@ void bibRef::writeToFile(fstream& out)  {
     out.write(reinterpret_cast <char*>(&pageEnd), sizeof(long));
 }
 
+//Lê do arquivo, cada um dos atributos de uma entrada de referência bibliográfica
 void bibRef::readFromFile(fstream& in) {
 	
 	in.read(ID, idLen);
@@ -49,6 +53,7 @@ void bibRef::readFromFile(fstream& in) {
     in.read(reinterpret_cast <char*>(&pageEnd), sizeof(long));
 }
 
+//Lê no arquivo o identificador de uma entrada de referência bibliográfica
 void bibRef::readKey() {
 	char s[100];
 	cout << "Digite o ID";
@@ -56,6 +61,7 @@ void bibRef::readKey() {
 	strncpy(ID, s, idLen);
 }
 
+//Escreve de forma legível os atributos de uma entrada de referência bibliográfica
 ostream& bibRef::writeLegibly(ostream& out) {
 	ID[idLen] = title[titleLen] = author[authorLen] = pub[pubLen] = '\0';
 	out << "ID = " << ID << ", Title = " << title << ", Author = " << author << "Publication = " << pub <<
@@ -63,6 +69,7 @@ ostream& bibRef::writeLegibly(ostream& out) {
 	return out;
 }
 
+//Lê do terminal os dados para compor os atributos de uma entrada de referência bibliográfica
 istream& bibRef::readFromConsole(istream& in) {
 	ID[idLen] = title[titleLen] = author[authorLen] = pub[pubLen] = '\0';
 	char s[80];
